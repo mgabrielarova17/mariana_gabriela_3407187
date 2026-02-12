@@ -1,8 +1,8 @@
 # Ficha de Información - App de Delivery de Comida
 
 ## 📋 Información
-- **Nombre**: [TU NOMBRE COMPLETO]
-- **Fecha**: [DD/MM/YYYY]
+- **Nombre**: MARIANA GABRIELA CONTRERAS ROMERO
+- **Fecha**: 12/02/2026
 - **Dominio Asignado**: App de delivery de comida - Logística y Transporte
 - **Entidad Principal**: Plataforma de delivery (FoodExpress)
 
