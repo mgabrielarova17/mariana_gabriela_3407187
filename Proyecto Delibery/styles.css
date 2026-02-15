@@ -1,25 +1,31 @@
-/* ===== RESET ===== */
+/* ============================================
+   DELIVERY WEB - DISEÑO MODERNO
+============================================ */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* ===== BODY ===== */
+/* ===== FONDO ===== */
 body {
-  background: linear-gradient(135deg, #ff7a18, #ff3d77, #6a5cff);
   min-height: 100vh;
-  color: #333;
+  background: linear-gradient(135deg, #ff5f3a, #7b5cff, #ff3d7f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 /* ===== CONTENEDOR ===== */
 .container {
+  width: 100%;
   max-width: 900px;
-  margin: 40px auto;
-  background: #ffffff;
+  background: #f4f4f4;
+  border-radius: 15px;
   padding: 30px;
-  border-radius: 18px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
@@ -30,44 +36,41 @@ header {
 }
 
 header h1 {
-  color: #ff3d77;
-  font-size: 2.2rem;
+  color: #ff3d7f;
+  font-size: 28px;
 }
 
 header p {
-  color: #777;
+  color: #666;
 }
 
-/* ===== SECCIONES ===== */
-section {
-  margin-bottom: 25px;
-}
-
+/* ===== TITULOS ===== */
 h2 {
-  margin-bottom: 10px;
   color: #6a5cff;
+  margin: 20px 0 10px;
 }
 
 /* ===== FORMULARIO ===== */
 form {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
 input,
 select {
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid #eee;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
   transition: 0.3s;
   font-size: 14px;
 }
 
 input:focus,
 select:focus {
-  border-color: #ff3d77;
-  outline: none;
-  box-shadow: 0 0 6px rgba(255,61,119,0.4);
+  border-color: #7b5cff;
+  box-shadow: 0 0 6px rgba(123,92,255,0.4);
 }
 
 /* ===== CHECKBOX ===== */
@@ -75,89 +78,113 @@ select:focus {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
 }
 
-/* ===== BOTÓN ===== */
+/* ===== BOTON ===== */
 .btn {
-  background: linear-gradient(135deg, #ff3d77, #6a5cff);
-  color: white;
-  border: none;
   padding: 12px;
-  border-radius: 12px;
-  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #ff3d7f, #7b5cff);
+  color: white;
   font-weight: bold;
+  cursor: pointer;
   transition: 0.3s;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* ===== LISTA PRODUCTOS ===== */
 .product-list {
-  display: grid;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 
 /* ===== TARJETA PRODUCTO ===== */
-.product-card {
-  background: #f9f9ff;
-  border-left: 6px solid #6a5cff;
-  padding: 15px;
+.item {
+  background: white;
   border-radius: 12px;
+  padding: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: 0.3s;
+  border-left: 6px solid #7b5cff;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* Producto desactivado */
+.item.inactive {
+  opacity: 0.6;
+  border-left: 6px solid #ff3d7f;
+}
+
+/* ===== TEXTO PRODUCTO ===== */
+.item h3 {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.item p {
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.category {
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* ===== BOTONES ACCIONES ===== */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
   transition: 0.3s;
 }
 
-.product-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.product-info h3 {
-  color: #ff3d77;
-}
-
-.product-info p {
-  font-size: 14px;
-  color: #666;
-}
-
-/* ===== BOTONES TARJETA ===== */
-.card-buttons button {
-  margin-left: 6px;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
+.actions button:first-child {
+  background: #7b5cff;
   color: white;
-  font-size: 13px;
 }
 
-.delete-btn {
-  background: #ff4d4d;
+.actions button:last-child {
+  background: #ff3d7f;
+  color: white;
 }
 
-.toggle-btn {
-  background: #6a5cff;
+.actions button:hover {
+  transform: scale(1.08);
 }
 
-/* ===== PRODUCTO INACTIVO ===== */
-.inactive {
-  opacity: 0.5;
-}
-
-/* ===== ESTADÍSTICAS ===== */
+/* ===== ESTADISTICAS ===== */
 .stats {
-  background: linear-gradient(135deg, #6a5cff, #ff3d77);
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(90deg, #7b5cff, #ff3d7f);
   color: white;
   padding: 15px;
   border-radius: 12px;
-  display: flex;
-  justify-content: space-around;
   font-weight: bold;
 }
