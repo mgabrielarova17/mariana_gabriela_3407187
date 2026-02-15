@@ -4,15 +4,11 @@
 
 const STORAGE_KEY = "delivery_products";
 
-/* ============================================
-   STATE
-============================================ */
+/* ================= STATE ================= */
 
 let items = loadItems();
 
-/* ============================================
-   LOCAL STORAGE
-============================================ */
+/* ================= LOCAL STORAGE ================= */
 
 function loadItems() {
   const data = localStorage.getItem(STORAGE_KEY);
@@ -23,11 +19,9 @@ function saveItems(items) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
 
-/* ============================================
-   UTILIDADES
-============================================ */
+/* ================= UTILIDADES ================= */
 
-// Formato pesos colombianos
+// Formato colombiano
 function formatPrice(value) {
   return new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -36,11 +30,10 @@ function formatPrice(value) {
   }).format(value);
 }
 
-/* ============================================
-   CRUD
-============================================ */
+/* ================= CRUD ================= */
 
 function createItem(itemData) {
+
   const newItem = {
     id: Date.now(),
     ...itemData,
@@ -49,7 +42,7 @@ function createItem(itemData) {
     updatedAt: null
   };
 
-  items.push(newItem);
+  items = [...items, newItem];
   saveItems(items);
   render();
 }
@@ -63,7 +56,7 @@ function deleteItem(id) {
 function toggleItemActive(id) {
   items = items.map(item =>
     item.id === id
-      ? { ...item, active: !item.active, updatedAt: new Date().toISOString() }
+      ? { ...item, active: !item.active }
       : item
   );
 
@@ -71,9 +64,7 @@ function toggleItemActive(id) {
   render();
 }
 
-/* ============================================
-   STATS
-============================================ */
+/* ================= STATS ================= */
 
 function getStats(items) {
   return items.reduce(
@@ -86,19 +77,17 @@ function getStats(items) {
   );
 }
 
-/* ============================================
-   RENDER
-============================================ */
+/* ================= RENDER ================= */
 
-const listContainer = document.getElementById("productList");
+const listContainer = document.getElementById("itemsList");
 const statsContainer = document.getElementById("stats");
 
 function renderItem(item) {
   return `
     <div class="item ${!item.active ? "inactive" : ""}">
-      <div>
+      <div class="item-info">
         <h3>${item.name}</h3>
-        <p><strong>Precio:</strong> ${formatPrice(item.price)}</p>
+        <p class="price">${formatPrice(item.price)}</p>
         <span class="category">${item.category}</span>
       </div>
 
@@ -132,31 +121,36 @@ function renderStats(stats) {
   `;
 }
 
+/* ✅ FILTRO FUNCIONANDO */
 function render() {
-  renderItems(items);
+
+  const filtro =
+    document.getElementById("filterCategoria").value;
+
+  let filteredItems = items;
+
+  if (filtro !== "Todos") {
+    filteredItems = items.filter(
+      item => item.category === filtro
+    );
+  }
+
+  renderItems(filteredItems);
   renderStats(getStats(items));
 }
 
-/* ============================================
-   FORMULARIO
-============================================ */
+/* ================= FORMULARIO ================= */
 
 const form = document.getElementById("productForm");
-const priceInput = document.getElementById("precio");
-
-/* ✅ PERMITE CUALQUIER VALOR (quita error 10000/20000) */
-priceInput.step = "any";
-priceInput.min = "8000";
 
 form.addEventListener("submit", e => {
   e.preventDefault();
 
-  const name = document.getElementById("nombre").value.trim();
-  const price = Number(priceInput.value);
-  const category = document.getElementById("categoria").value;
-  const disponible = document.getElementById("disponible").checked;
+  const name = document.getElementById("name").value.trim();
+  const price = Number(document.getElementById("price").value);
+  const category = document.getElementById("category").value;
 
-  // Validación mínima
+  // ✅ ahora mínimo 8.000
   if (price < 8000) {
     alert("El precio mínimo debe ser 8.000 COP");
     return;
@@ -165,15 +159,18 @@ form.addEventListener("submit", e => {
   createItem({
     name,
     price,
-    category,
-    disponible
+    category
   });
 
   form.reset();
 });
 
-/* ============================================
-   INIT
-============================================ */
+/* ================= EVENTO FILTRO ================= */
+
+document
+  .getElementById("filterCategoria")
+  .addEventListener("change", render);
+
+/* ================= INIT ================= */
 
 render();
