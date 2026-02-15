@@ -1,7 +1,6 @@
 /* ============================================
    DELIVERY WEB - GESTOR DE PRODUCTOS
-   Proyecto Semana 02
-   ============================================ */
+============================================ */
 
 const STORAGE_KEY = "delivery_products";
 
@@ -28,7 +27,7 @@ function saveItems(items) {
    UTILIDADES
 ============================================ */
 
-// 👉 Formatear precio en pesos colombianos
+// Formato pesos colombianos
 function formatPrice(value) {
   return new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -50,7 +49,7 @@ function createItem(itemData) {
     updatedAt: null
   };
 
-  items = [...items, newItem];
+  items.push(newItem);
   saveItems(items);
   render();
 }
@@ -143,25 +142,31 @@ function render() {
 ============================================ */
 
 const form = document.getElementById("productForm");
+const priceInput = document.getElementById("precio");
+
+/* ✅ PERMITE CUALQUIER VALOR (quita error 10000/20000) */
+priceInput.step = "any";
+priceInput.min = "8000";
 
 form.addEventListener("submit", e => {
   e.preventDefault();
 
-  // ✅ IDs corregidos según tu HTML
   const name = document.getElementById("nombre").value.trim();
-  const price = Number(document.getElementById("precio").value);
+  const price = Number(priceInput.value);
   const category = document.getElementById("categoria").value;
+  const disponible = document.getElementById("disponible").checked;
 
-  // ✅ Validación precio mínimo
-  if (price < 10000) {
-    alert("El precio mínimo debe ser 10.000 COP");
+  // Validación mínima
+  if (price < 8000) {
+    alert("El precio mínimo debe ser 8.000 COP");
     return;
   }
 
   createItem({
     name,
     price,
-    category
+    category,
+    disponible
   });
 
   form.reset();
