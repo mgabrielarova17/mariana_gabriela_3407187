@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Web - Gestor de Productos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>🍔 Delivery Web</h1>
+      <p>Gestor de productos del menú</p>
+    </header>
+
+    <!-- FORMULARIO -->
+    <section class="form-section">
+      <h2>Agregar Producto</h2>
+
+      <form id="productForm">
+        <input type="text" id="nombre" placeholder="Nombre del producto" required>
+
+        <!-- ✅ SOLO AQUÍ CAMBIAMOS -->
+        <input 
+          type="number"
+          id="precio"
+          placeholder="Precio"
+          min="10000"
+          step="10000"
+          required
+        >
+
+        <select id="categoria">
+          <option value="Comida Rápida">Comida Rápida</option>
+          <option value="Bebidas">Bebidas</option>
+          <option value="Postres">Postres</option>
+        </select>
+
+        <label class="checkbox">
+          <input type="checkbox" id="disponible">
+          Disponible
+        </label>
+
+        <button type="submit" class="btn">Agregar</button>
+      </form>
+    </section>
+
+    <!-- FILTRO -->
+    <section class="filter-section">
+      <h2>Filtrar</h2>
+
+      <select id="filterCategoria">
+        <option value="Todos">Todos</option>
+        <option value="Comida Rápida">Comida Rápida</option>
+        <option value="Bebidas">Bebidas</option>
+        <option value="Postres">Postres</option>
+      </select>
+    </section>
+
+    <!-- LISTA -->
+    <section>
+      <h2>Productos</h2>
+      <div id="productList" class="product-list"></div>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section>
+      <h2>Estadísticas</h2>
+      <div id="stats" class="stats"></div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
