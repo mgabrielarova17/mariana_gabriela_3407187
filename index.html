@@ -1,85 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FoodExpress - Interactive Info Card</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rappi - Ficha de Información</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+    <!-- Botón de cambio de tema -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
       <span class="theme-icon">🌙</span>
     </button>
 
-    <!-- Card -->
-    <div class="card">
-      <!-- Header -->
+    <!-- Tarjeta principal -->
+    <div class="card" id="businessCard">
+      <!-- Sección de encabezado -->
       <div class="card-header">
         <div class="avatar">
-          <img
-            src="https://img.freepik.com/vector-premium/food-express-logo-design_79169-3.jpg"
-            alt="FoodExpress Logo"
-            id="avatarImg"
-          />
+          <!-- Logo Rappi SVG con colores originales -->
+          <svg viewBox="0 0 100 100" class="rappi-logo">
+            <circle cx="50" cy="50" r="48" fill="#FF441F"/>
+            <text x="50" y="68" text-anchor="middle" font-size="55" font-weight="900" fill="white" font-family="Arial Black, sans-serif">R</text>
+          </svg>
         </div>
         <div class="header-info">
-          <h1 id="userName">Loading...</h1>
-          <p class="title" id="userTitle">Loading...</p>
-          <p class="location" id="userLocation">📍 Loading...</p>
+          <h1 id="userName">Cargando...</h1>
+          <p class="title" id="userTitle">Cargando...</p>
+          <p class="location" id="userLocation">📍 Cargando...</p>
         </div>
       </div>
 
-      <!-- About -->
+      <!-- Sección de descripción -->
       <div class="card-section">
-        <h2>About</h2>
-        <p id="userBio" class="bio">Loading...</p>
+        <h2>Sobre Nosotros</h2>
+        <p id="userBio" class="bio">Cargando...</p>
       </div>
 
-      <!-- Contact -->
+      <!-- Sección de contacto -->
       <div class="card-section">
-        <h2>Contact</h2>
+        <h2>Contacto</h2>
         <div class="contact-info">
           <div class="contact-item">
             <span class="icon">📧</span>
-            <span id="userEmail">Loading...</span>
-            <button id="copyEmailBtn" class="btn btn-small">Copy</button>
+            <span id="userEmail">Cargando...</span>
+            <button id="copyEmailBtn" class="btn btn-small">Copiar</button>
           </div>
           <div class="contact-item">
             <span class="icon">📱</span>
-            <span id="userPhone">Loading...</span>
+            <span id="userPhone">Cargando...</span>
+            <button id="copyPhoneBtn" class="btn btn-small">Copiar</button>
+          </div>
+          <div class="contact-item">
+            <span class="icon">💬</span>
+            <span id="userWhatsapp">Cargando...</span>
+            <button id="copyWhatsappBtn" class="btn btn-small">Copiar</button>
+          </div>
+          <div class="contact-item">
+            <span class="icon">🌐</span>
+            <a id="userWebsite" href="#" target="_blank" class="website-link">Cargando...</a>
           </div>
         </div>
       </div>
 
-      <!-- Services / Transport -->
+      <!-- Sección de servicios -->
       <div class="card-section">
-        <h2>Logistics & Transport</h2>
-        <div id="skillsList" class="skills-list">Loading...</div>
-        <button id="toggleSkills" class="btn btn-secondary">Show More</button>
+        <h2>Servicios de Entrega</h2>
+        <div id="skillsList" class="skills-list">
+          Cargando...
+        </div>
+        <button id="toggleSkills" class="btn btn-secondary">
+          <span class="btn-text">Mostrar más</span>
+          <span class="btn-icon">▼</span>
+        </button>
       </div>
 
-      <!-- Links -->
+      <!-- Sección de países de operación -->
       <div class="card-section">
-        <h2>Connect</h2>
-        <div id="socialLinks" class="social-links">Loading...</div>
+        <h2>Países de Operación</h2>
+        <div id="socialLinks" class="social-links">
+          Cargando...
+        </div>
       </div>
 
-      <!-- Stats -->
+      <!-- Sección de estadísticas -->
       <div class="card-section">
-        <h2>Statistics</h2>
-        <div id="stats" class="stats-grid">Loading...</div>
+        <h2>Estadísticas</h2>
+        <div id="stats" class="stats-grid">
+          Cargando...
+        </div>
+      </div>
+
+      <!-- Botón copiar información completa -->
+      <div class="card-section card-actions">
+        <button id="copyInfoBtn" class="btn btn-primary">
+          <span class="btn-icon-left">📋</span>
+          <span>Copiar Información Completa</span>
+        </button>
       </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
-      <p>Built with ❤️ using ES2023 JavaScript</p>
-      <p class="small">Week 01 Project</p>
+      <p>Proyecto SENA - Semana 1</p>
+      <p class="small">Dominio: Delivery de Comida - Logística y Transporte</p>
     </footer>
   </div>
 
-  <!-- Toast -->
+  <!-- Notificación Toast -->
   <div id="toast" class="toast">
     <span id="toastMessage"></span>
   </div>
