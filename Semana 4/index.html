@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logistics Delivery System - Semana 4</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <header class="header">
+      <h1>🛵 Logistics Delivery System</h1>
+      <p>Gestión de Pedidos y Transporte con ES6 Modules</p>
+      <div class="stats-bar" id="quickStats"></div>
+    </header>
+
+    <!-- Formulario -->
+    <section class="form-section">
+      <h2>➕ Registrar Pedido</h2>
+      <form id="itemForm" class="form">
+        <input type="hidden" id="editId" value="">
+        
+        <!-- Cliente y Dirección -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre del Cliente</label>
+            <input type="text" id="itemName" placeholder="Ej: Juan Pérez" required>
+          </div>
+          <div class="form-group">
+            <label>Dirección de Entrega</label>
+            <input type="text" id="itemAddress" placeholder="Ej: Calle 123 #45-67" required>
+          </div>
+        </div>
+
+        <!-- Menú de Productos (Aquí salen los cuadritos) -->
+        <div class="form-group">
+          <label>📦 Selecciona los Productos (Marca el cuadrito)</label>
+          <div id="productSelector" class="product-list-container">
+            <!-- JavaScript pondrá los productos aquí automáticamente -->
+            <p style="color:var(--text-secondary)">Cargando menú...</p>
+          </div>
+        </div>
+
+        <!-- Resumen del Pedido -->
+        <div class="order-summary-box">
+          <h4>🧾 Resumen del Pedido</h4>
+          <div id="orderSummaryList" class="order-summary-list">
+            <p class="placeholder-text">Selecciona productos marcando el cuadrito</p>
+          </div>
+          <div class="summary-totals">
+            <div class="summary-row">
+              <span>Valor Productos:</span>
+              <span id="displayProductsCost">$0</span>
+            </div>
+            <div class="summary-row">
+              <span>🛵 Domicilio:</span>
+              <input type="number" id="itemDeliveryCost" value="5000" min="0" style="width:100px; padding:5px;">
+            </div>
+            <div class="summary-row total">
+              <span><strong>TOTAL A PAGAR:</strong></span>
+              <span id="displayTotalCost"><strong>$5.000</strong></span>
+            </div>
+          </div>
+          <!-- Campos ocultos para enviar el formulario -->
+          <input type="hidden" id="itemProductsCost" value="0">
+          <input type="hidden" id="itemOrderDetails" value="">
+        </div>
+        
+        <!-- Repartidor y Estado -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Repartidor Asignado</label>
+            <select id="itemDriver">
+              <option value="Sin Asignar">👤 Sin Asignar</option>
+              <option value="Carlos">🏍️ Carlos</option>
+              <option value="María">🛵 María</option>
+              <option value="Pedro">🚲 Pedro</option>
+              <option value="Laura">🛵 Laura</option>
+              <option value="Andrés">🏍️ Andrés</option>
+              <option value="Sofia">🚲 Sofia</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estado del Pedido</label>
+            <select id="itemCategory">
+              <option value="Pendiente">⏳ Pendiente</option>
+              <option value="En Camino">🛵 En Camino</option>
+              <option value="Entregado">✅ Entregado</option>
+              <option value="Cancelado">❌ Cancelado</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-buttons">
+          <button type="submit" class="btn btn-primary" id="btnSave">Guardar Pedido</button>
+          <button type="button" class="btn btn-secondary" id="btnCancel" style="display:none;">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Filtros -->
+    <section class="filter-section">
+      <h2>🔍 Buscar y Filtrar Pedidos</h2>
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Buscar cliente o dirección...">
+        <select id="filterCategory">
+          <option value="Todas">📋 Todos los Estados</option>
+          <option value="Pendiente">⏳ Pendientes</option>
+          <option value="En Camino">🛵 En Camino</option>
+          <option value="Entregado">✅ Entregados</option>
+          <option value="Cancelado">❌ Cancelados</option>
+        </select>
+        <select id="filterDriver">
+          <option value="Todos">🧑‍💼 Todos los Repartidores</option>
+          <option value="Sin Asignar">👤 Sin Asignar</option>
+          <option value="Carlos">🏍️ Carlos</option>
+          <option value="María">🛵 María</option>
+          <option value="Pedro">🚲 Pedro</option>
+          <option value="Laura">🛵 Laura</option>
+          <option value="Andrés">🏍️ Andrés</option>
+          <option value="Sofia">🚲 Sofia</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Lista de Pedidos -->
+    <section class="list-section">
+      <h2>📋 Lista de Pedidos</h2>
+      <div id="itemsList" class="items-grid"></div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-btns">
+       <button class="btn btn-secondary" id="btnReports">📊 Cargar Reportes</button>
+       <button class="btn btn-secondary" id="btnExport">📥 Exportar JSON</button>
+    </section>
+
+    <!-- Reportes -->
+    <section id="reportsContainer" class="reports-section hidden"></section>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  
+  <!-- Módulo Principal -->
+  <script type="module" src="./starter/main.js"></script>
+</body>
+</html>
